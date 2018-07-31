@@ -1,0 +1,15 @@
+node:
+  build: ./app-server
+  container_name: kanshi-apps
+  working_dir: "/usr/src/app"
+  environment:
+   - "TZ=Japan"
+  volumes:
+   - "./app-server:/usr/src/app"
+  env_file:
+   - .env
+  links:
+   - "noderedis"
+noderedis:
+  image: "redis:3"
+  container_name: "noderedis"
